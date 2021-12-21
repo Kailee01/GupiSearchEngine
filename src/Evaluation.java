@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
+// importing the module
 import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.sql.SQLException;
@@ -35,26 +36,26 @@ public class Evaluation {
         GuPiDataBase bdd = new GuPiDataBase();
         bdd.connect();
 
-        String queries2[] = {"Quelles sont les personnes impliquées dans le film Intouchables?",
+        String queries2[] = {"Quelles sont les personnes impliquÃ©es dans le film Intouchables?",
                 "Quel est le lieu de naissance d'Omar Sy?",
-                "Qui a até récompensé pour Intouchables?",
-                "Quel est le palmarès des Globes de Cristal 2012?",
+                "Qui a atÃ© rÃ©compensÃ© pour Intouchables?",
+                "Quel est le palmarÃ¨s des Globes de Cristal 2012?",
                 "Quels sont les membres du jury du Globes de Cristal 2012?",
-                "Quels prix ont été décernés à Omar Sy aux Globes de Cristal 2012?",
-                "Où a eu lieu les Globes de Cristal 2012?",
-                "Quels prix ont été décernés à Omar Sy?",
-                "Quels acteurs ont joué avec Omar Sy?"
+                "Quels prix ont Ã©tÃ© dÃ©cernÃ©s Ã  Omar Sy aux Globes de Cristal 2012?",
+                "OÃ¹ a eu lieu les Globes de Cristal 2012?",
+                "Quels prix ont Ã©tÃ© dÃ©cernÃ©s Ã  Omar Sy?",
+                "Quels acteurs ont jouÃ© avec Omar Sy?"
         };
 
         String queries[] = {"personnes, Intouchables",
                 "lieu naissance, Omar Sy",
-                "personne, récompensées, Intouchables",
-                "palmarès, Globes de Cristal 2012",
+                "personne, rÃ©compensÃ©es, Intouchables",
+                "palmarÃ¨s, Globes de Cristal 2012",
                 "membre, jury, Globes de Cristal 2012",
                 "prix, Omar Sy, Globes de Cristal 2012",
                 "lieu, Globes de Cristal 2012",
                 "prix, Omar Sy",
-                "acteurs, joué avec, Omar Sy"
+                "acteurs, jouÃ© avec, Omar Sy"
         };
 
         SparqlClientExample sparql = new SparqlClientExample();
@@ -63,7 +64,7 @@ public class Evaluation {
         for (int i = 0; i< queries.length; i++) {
             HashMap<String, Boolean> docToRelevanceMap = readQrel("qrelQ" + (i + 1) + ".txt");
 
-            // readQrel est une fon[ction à faire qui lit un fichier qrle et il retourne un mapping document -> pertinent. Si dans le fichier qrel un document est attribué un score de 1 ou 0.5 le document est considéré pertinent. Si le qrel contient un score 0 ou pas de score pour le document, le document n'est pas pertient.
+            // readQrel est une fon[ction Ã  faire qui lit un fichier qrle et il retourne un mapping document -> pertinent. Si dans le fichier qrel un document est attribuÃ© un score de 1 ou 0.5 le document est considÃ©rÃ© pertinent. Si le qrel contient un score 0 ou pas de score pour le document, le document n'est pas pertient.
             //System.out.println("Ancienne q : "+queries[i]);
 
             TreeMap<String, Float> resultsReqTF = null;
@@ -81,7 +82,7 @@ public class Evaluation {
                 resultsReqCos = bdd.wordsRequestCos(queries[i]);
             }
             System.out.println("------------------------------------------------");
-            System.out.println("Requete N°"+(i+1));
+            System.out.println("Requete NÂ°"+(i+1));
             System.out.println("------------------------------------------------");
 
             tempTF = getPrecision(0,4,resultsReqTF,docToRelevanceMap);
@@ -90,9 +91,9 @@ public class Evaluation {
             precisionAt5TF += tempTF;
             precisionAt5IDF += tempIDF;
             precisionAt5Cos += tempCos;
-            System.out.println("[SUM-TF] La précision P@5 est " + tempTF);
-            System.out.println("[SUM-TFIDF] La précision P@5 est " + tempIDF);
-            System.out.println("[COS-TFIDF] La précision P@5 est " + tempCos);
+            System.out.println("[SUM-TF] La prÃ©cision P@5 est " + tempTF);
+            System.out.println("[SUM-TFIDF] La prÃ©cision P@5 est " + tempIDF);
+            System.out.println("[COS-TFIDF] La prÃ©cision P@5 est " + tempCos);
 
             System.out.println("                -----------                     ");
 
@@ -102,9 +103,9 @@ public class Evaluation {
             precisionAt10TF += tempTF;
             precisionAt10IDF += tempIDF;
             precisionAt10Cos += tempCos;
-            System.out.println("[SUM-TF] La précision P@10 est " + tempTF);
-            System.out.println("[SUM-TFIDF] La précision P@10 est " + tempIDF);
-            System.out.println("[COS-TFIDF] La précision P@10 est " + tempCos);
+            System.out.println("[SUM-TF] La prÃ©cision P@10 est " + tempTF);
+            System.out.println("[SUM-TFIDF] La prÃ©cision P@10 est " + tempIDF);
+            System.out.println("[COS-TFIDF] La prÃ©cision P@10 est " + tempCos);
 
             System.out.println("                -----------                     ");
 
@@ -114,9 +115,9 @@ public class Evaluation {
             precisionAt25TF += tempTF;
             precisionAt25IDF += tempIDF;
             precisionAt25Cos += tempCos;
-            System.out.println("[SUM-TF] La précision P@25 est " + tempTF);
-            System.out.println("[SUM-TFIDF] La précision P@25 est " + tempIDF);
-            System.out.println("[COS-TFIDF] La précision P@25 est " + tempCos);
+            System.out.println("[SUM-TF] La prÃ©cision P@25 est " + tempTF);
+            System.out.println("[SUM-TFIDF] La prÃ©cision P@25 est " + tempIDF);
+            System.out.println("[COS-TFIDF] La prÃ©cision P@25 est " + tempCos);
 
         }
 
@@ -125,21 +126,21 @@ public class Evaluation {
         System.out.println("Moyenne");
         System.out.println("------------------------------------------------");
 
-        System.out.println("[SUM-TF]La précision moyene P@5 est " + precisionAt5TF/queries.length);
-        System.out.println("[SUM-TFIDF]La précision moyene P@5 est " + precisionAt5IDF/queries.length);
-        System.out.println("[COS-TFIDF]La précision moyene P@5 est " + precisionAt5Cos/queries.length);
+        System.out.println("[SUM-TF]La prÃ©cision moyene P@5 est " + precisionAt5TF/queries.length);
+        System.out.println("[SUM-TFIDF]La prÃ©cision moyene P@5 est " + precisionAt5IDF/queries.length);
+        System.out.println("[COS-TFIDF]La prÃ©cision moyene P@5 est " + precisionAt5Cos/queries.length);
 
         System.out.println("                -----------                     ");
 
-        System.out.println("[TF]La précision moyene P@10 est " + precisionAt10TF/queries.length);
-        System.out.println("[IDF]La précision moyene P@10 est " + precisionAt10IDF/queries.length);
-        System.out.println("[Cos]La précision moyene P@10 est " + precisionAt10Cos/queries.length);
+        System.out.println("[TF]La prÃ©cision moyene P@10 est " + precisionAt10TF/queries.length);
+        System.out.println("[IDF]La prÃ©cision moyene P@10 est " + precisionAt10IDF/queries.length);
+        System.out.println("[Cos]La prÃ©cision moyene P@10 est " + precisionAt10Cos/queries.length);
 
         System.out.println("                -----------                     ");
 
-        System.out.println("[TF]La précision moyene P@25 est " + precisionAt25TF/queries.length);
-        System.out.println("[IDF]La précision moyene P@25 est " + precisionAt25IDF/queries.length);
-        System.out.println("[Cos]La précision moyene P@25 est " + precisionAt25Cos/queries.length);
+        System.out.println("[TF]La prÃ©cision moyene P@25 est " + precisionAt25TF/queries.length);
+        System.out.println("[IDF]La prÃ©cision moyene P@25 est " + precisionAt25IDF/queries.length);
+        System.out.println("[Cos]La prÃ©cision moyene P@25 est " + precisionAt25Cos/queries.length);
 
         System.out.println("------------------------------------------------");
         System.out.println("----------    End of evaluation    -------------");
@@ -172,26 +173,26 @@ public class Evaluation {
         GuPiDataBase bdd = new GuPiDataBase();
         bdd.connect();
 
-        String queries2[] = {"Quelles sont les personnes impliquées dans le film Intouchables?",
+        String queries2[] = {"Quelles sont les personnes impliquÃ©es dans le film Intouchables?",
                 "Quel est le lieu de naissance d'Omar Sy?",
-                "Qui a até récompensé pour Intouchables?",
-                "Quel est le palmarès des Globes de Cristal 2012?",
+                "Qui a atÃ© rÃ©compensÃ© pour Intouchables?",
+                "Quel est le palmarÃ¨s des Globes de Cristal 2012?",
                 "Quels sont les membres du jury du Globes de Cristal 2012?",
-                "Quels prix ont été décernés à Omar Sy aux Globes de Cristal 2012?",
-                "Où a eu lieu les Globes de Cristal 2012?",
-                "Quels prix ont été décernés à Omar Sy?",
-                "Quels acteurs ont joué avec Omar Sy?"
+                "Quels prix ont Ã©tÃ© dÃ©cernÃ©s Ã  Omar Sy aux Globes de Cristal 2012?",
+                "OÃ¹ a eu lieu les Globes de Cristal 2012?",
+                "Quels prix ont Ã©tÃ© dÃ©cernÃ©s Ã  Omar Sy?",
+                "Quels acteurs ont jouÃ© avec Omar Sy?"
         };
 
         String queries[] = {"personnes, Intouchables",
                 "lieu naissance, Omar Sy",
-                "personne, récompensées, Intouchables",
-                "palmarès, Globes de Cristal 2012",
+                "personne, rÃ©compensÃ©es, Intouchables",
+                "palmarÃ¨s, Globes de Cristal 2012",
                 "membre, jury, Globes de Cristal 2012",
                 "prix, Omar Sy, Globes de Cristal 2012",
                 "lieu, Globes de Cristal 2012",
                 "prix, Omar Sy",
-                "acteurs, joué avec, Omar Sy"
+                "acteurs, jouÃ© avec, Omar Sy"
         };
 
         SparqlClientExample sparql = new SparqlClientExample();
@@ -200,14 +201,14 @@ public class Evaluation {
 
         for (int i = 0; i< queries.length; i++) {
 
-            HashMap<String, Boolean> docToRelevanceMap = readQrel("qrelQ" + (i + 1) + ".txt");  // readQrel est une fonction à faire qui lit un fichier qrle et il retourne un mapping document -> pertinent. Si dans le fichier qrel un document est attribué un score de 1 ou 0.5 le document est considéré pertinent. Si le qrel contient un score 0 ou pas de score pour le document, le document n'est pas pertient.
+            HashMap<String, Boolean> docToRelevanceMap = readQrel("qrelQ" + (i + 1) + ".txt");  // readQrel est une fonction Ã  faire qui lit un fichier qrle et il retourne un mapping document -> pertinent. Si dans le fichier qrel un document est attribuÃ© un score de 1 ou 0.5 le document est considÃ©rÃ© pertinent. Si le qrel contient un score 0 ou pas de score pour le document, le document n'est pas pertient.
             ArrayList<WordWeight> q = sparql.enrichissement(client, queries[i]);
             System.out.println("Nouvelle requete : "+q.toString());
             TreeMap<String, Float> resultsReqTF = bdd.wordsRequestWithTfWeight(q);
             TreeMap<String, Float> resultsReqIDF = bdd.wordsRequestWithIdfWeight(q);
             TreeMap<String, Float> resultsReqCos = bdd.wordsRequestCosWeight(q);
             System.out.println("------------------------------------------------");
-            System.out.println("Requete N°"+(i+1));
+            System.out.println("Requete NÂ°"+(i+1));
             System.out.println("------------------------------------------------");
 
             tempTF = getPrecision(0,4,resultsReqTF,docToRelevanceMap);
@@ -216,9 +217,9 @@ public class Evaluation {
             precisionAt5TF += tempTF;
             precisionAt5IDF += tempIDF;
             precisionAt5Cos += tempCos;
-            System.out.println("[SUM-TF] La précision P@5 est " + tempTF);
-            System.out.println("[SUM-TFIDF] La précision P@5 est " + tempIDF);
-            System.out.println("[COS-TFIDF] La précision P@5 est " + tempCos);
+            System.out.println("[SUM-TF] La prÃ©cision P@5 est " + tempTF);
+            System.out.println("[SUM-TFIDF] La prÃ©cision P@5 est " + tempIDF);
+            System.out.println("[COS-TFIDF] La prÃ©cision P@5 est " + tempCos);
 
             System.out.println("                -----------                     ");
 
@@ -228,9 +229,9 @@ public class Evaluation {
             precisionAt10TF += tempTF;
             precisionAt10IDF += tempIDF;
             precisionAt10Cos += tempCos;
-            System.out.println("[SUM-TF] La précision P@10 est " + tempTF);
-            System.out.println("[SUM-TFIDF] La précision P@10 est " + tempIDF);
-            System.out.println("[COS-TFIDF] La précision P@10 est " + tempCos);
+            System.out.println("[SUM-TF] La prÃ©cision P@10 est " + tempTF);
+            System.out.println("[SUM-TFIDF] La prÃ©cision P@10 est " + tempIDF);
+            System.out.println("[COS-TFIDF] La prÃ©cision P@10 est " + tempCos);
 
             System.out.println("                -----------                     ");
 
@@ -240,9 +241,9 @@ public class Evaluation {
             precisionAt25TF += tempTF;
             precisionAt25IDF += tempIDF;
             precisionAt25Cos += tempCos;
-            System.out.println("[SUM-TF] La précision P@25 est " + tempTF);
-            System.out.println("[SUM-TFIDF] La précision P@25 est " + tempIDF);
-            System.out.println("[COS-TFIDF] La précision P@25 est " + tempCos);
+            System.out.println("[SUM-TF] La prÃ©cision P@25 est " + tempTF);
+            System.out.println("[SUM-TFIDF] La prÃ©cision P@25 est " + tempIDF);
+            System.out.println("[COS-TFIDF] La prÃ©cision P@25 est " + tempCos);
 
         }
 
@@ -251,21 +252,21 @@ public class Evaluation {
         System.out.println("Moyenne");
         System.out.println("------------------------------------------------");
 
-        System.out.println("[SUM-TF]La précision moyene P@5 est " + precisionAt5TF/queries.length);
-        System.out.println("[SUM-TFIDF]La précision moyene P@5 est " + precisionAt5IDF/queries.length);
-        System.out.println("[COS-TFIDF]La précision moyene P@5 est " + precisionAt5Cos/queries.length);
+        System.out.println("[SUM-TF]La prÃ©cision moyene P@5 est " + precisionAt5TF/queries.length);
+        System.out.println("[SUM-TFIDF]La prÃ©cision moyene P@5 est " + precisionAt5IDF/queries.length);
+        System.out.println("[COS-TFIDF]La prÃ©cision moyene P@5 est " + precisionAt5Cos/queries.length);
 
         System.out.println("                -----------                     ");
 
-        System.out.println("[TF]La précision moyene P@10 est " + precisionAt10TF/queries.length);
-        System.out.println("[IDF]La précision moyene P@10 est " + precisionAt10IDF/queries.length);
-        System.out.println("[Cos]La précision moyene P@10 est " + precisionAt10Cos/queries.length);
+        System.out.println("[TF]La prÃ©cision moyene P@10 est " + precisionAt10TF/queries.length);
+        System.out.println("[IDF]La prÃ©cision moyene P@10 est " + precisionAt10IDF/queries.length);
+        System.out.println("[Cos]La prÃ©cision moyene P@10 est " + precisionAt10Cos/queries.length);
 
         System.out.println("                -----------                     ");
 
-        System.out.println("[TF]La précision moyene P@25 est " + precisionAt25TF/queries.length);
-        System.out.println("[IDF]La précision moyene P@25 est " + precisionAt25IDF/queries.length);
-        System.out.println("[Cos]La précision moyene P@25 est " + precisionAt25Cos/queries.length);
+        System.out.println("[TF]La prÃ©cision moyene P@25 est " + precisionAt25TF/queries.length);
+        System.out.println("[IDF]La prÃ©cision moyene P@25 est " + precisionAt25IDF/queries.length);
+        System.out.println("[Cos]La prÃ©cision moyene P@25 est " + precisionAt25Cos/queries.length);
 
         System.out.println("------------------------------------------------");
         System.out.println("----------    End of evaluation    -------------");
@@ -339,16 +340,16 @@ public class Evaluation {
 
         System.out.println("------------------------------------------------");
         System.out.println("Sans enrichissement");
-        System.out.println("Requête : "+request);
+        System.out.println("RequÃªte : "+request);
         System.out.println("------------------------------------------------");
 
         tempTF = getPrecision(0,4,resultsReqTF,docToRelevanceMap);
         tempIDF = getPrecision(0,4,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,4,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@5 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@5 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@5 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@5 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@5 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@5 est " + tempCos);
 
         System.out.println("                -----------                     ");
 
@@ -356,9 +357,9 @@ public class Evaluation {
         tempIDF = getPrecision(0,9,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,9,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@10 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@10 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@10 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@10 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@10 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@10 est " + tempCos);
 
         System.out.println("                -----------                     ");
 
@@ -366,9 +367,9 @@ public class Evaluation {
         tempIDF = getPrecision(0,24,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,24,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@25 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@25 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@25 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@25 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@25 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@25 est " + tempCos);
 
         ArrayList<WordWeight> wordWeightList = sparql.enrichissement(client, request);
         String q = sparql.toWordOnly(wordWeightList);
@@ -378,16 +379,16 @@ public class Evaluation {
 
         System.out.println("------------------------------------------------");
         System.out.println("Avec enrichissement");
-        System.out.println("Requête : "+q);
+        System.out.println("RequÃªte : "+q);
         System.out.println("------------------------------------------------");
 
         tempTF = getPrecision(0,4,resultsReqTF,docToRelevanceMap);
         tempIDF = getPrecision(0,4,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,4,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@5 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@5 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@5 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@5 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@5 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@5 est " + tempCos);
 
         System.out.println("                -----------                     ");
 
@@ -395,9 +396,9 @@ public class Evaluation {
         tempIDF = getPrecision(0,9,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,9,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@10 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@10 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@10 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@10 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@10 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@10 est " + tempCos);
 
         System.out.println("                -----------                     ");
 
@@ -405,9 +406,9 @@ public class Evaluation {
         tempIDF = getPrecision(0,24,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,24,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@25 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@25 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@25 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@25 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@25 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@25 est " + tempCos);
 
 
 
@@ -417,17 +418,17 @@ public class Evaluation {
         resultsReqCos = bdd.wordsRequestCosWeight(wordWeightList);
 
         System.out.println("------------------------------------------------");
-        System.out.println("Avec enrichissement et pondération");
-        System.out.println("Requête : "+wordWeightList);
+        System.out.println("Avec enrichissement et pondÃ©ration");
+        System.out.println("RequÃªte : "+wordWeightList);
         System.out.println("------------------------------------------------");
 
         tempTF = getPrecision(0,4,resultsReqTF,docToRelevanceMap);
         tempIDF = getPrecision(0,4,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,4,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@5 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@5 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@5 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@5 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@5 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@5 est " + tempCos);
 
         System.out.println("                -----------                     ");
 
@@ -435,9 +436,9 @@ public class Evaluation {
         tempIDF = getPrecision(0,9,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,9,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@10 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@10 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@10 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@10 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@10 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@10 est " + tempCos);
 
         System.out.println("                -----------                     ");
 
@@ -445,9 +446,9 @@ public class Evaluation {
         tempIDF = getPrecision(0,24,resultsReqIDF,docToRelevanceMap);
         tempCos = getPrecision(0,24,resultsReqCos,docToRelevanceMap);
 
-        System.out.println("[SUM-TF] La précision P@25 est " + tempTF);
-        System.out.println("[SUM-TFIDF] La précision P@25 est " + tempIDF);
-        System.out.println("[COS-TFIDF] La précision P@25 est " + tempCos);
+        System.out.println("[SUM-TF] La prÃ©cision P@25 est " + tempTF);
+        System.out.println("[SUM-TFIDF] La prÃ©cision P@25 est " + tempIDF);
+        System.out.println("[COS-TFIDF] La prÃ©cision P@25 est " + tempCos);
 
 
 
